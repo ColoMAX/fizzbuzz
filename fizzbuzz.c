@@ -114,6 +114,7 @@ void FzBz_flush(struct fizzbuzz_obj *obj) {
   fwrite(obj->printBuffer, sizeof(obj->printBuffer[0]), obj->printBufferSize,
          stdout);
   putchar('\n');
+  fflush(stdout);
 }
 
 void FzBz_print(const struct fizzbuzz_obj *obj) {

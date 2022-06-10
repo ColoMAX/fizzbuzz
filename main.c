@@ -21,8 +21,9 @@ int main(int argc, char *argv[]) {
   struct argp argp = {options, parse_opt};
 
   argp_parse(&argp, argc, argv, 0, 0, 0);
-
-  setvbuf(stdout, NULL, _IOLBF, 16);
+  int vbufs = 4 * sizeof(char) * endPoint;
+  vbufs = vbufs > 1024 * 32 ? 1024 * 32 : (vbufs <= 0 ? 0 : vbufs);
+  setvbuf(stdout, NULL, _IOFBF, vbufs);
 
   struct fizzbuzz_obj fb;
 
